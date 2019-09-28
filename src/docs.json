@@ -1,0 +1,99 @@
+{
+  "timestamp": "2019-09-27T14:33:02",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "1.5.2",
+    "typescriptVersion": "3.6.3"
+  },
+  "components": [
+    {
+      "tag": "bal-button",
+      "filePath": "src/components/bal-button/bal-button.tsx",
+      "encapsulation": "none",
+      "readme": "# bal-button\n\naksdfölkasd\n",
+      "docs": "aksdfölkasd",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "If `true` the button is disabled",
+          "docsTags": [],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "If `true` the label is hidden and a loading spinner is shown instead.",
+          "docsTags": [],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"is-info\" | \"is-primary\"",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "The theme type of the button. Given by bulma our css framework.",
+          "docsTags": [],
+          "default": "\"is-primary\"",
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": []
+    },
+    {
+      "tag": "bal-spinner",
+      "filePath": "src/components/bal-spinner/bal-spinner.tsx",
+      "encapsulation": "shadow",
+      "readme": "# doc-page-spinner\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": []
+    },
+    {
+      "tag": "doc-snippet",
+      "filePath": "src/components/doc-snippet/doc-snippet.tsx",
+      "encapsulation": "none",
+      "readme": "# doc-snippet\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "snippet",
+          "type": "string",
+          "mutable": false,
+          "attr": "snippet",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": []
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+.bd-snippet {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+
+  .bd-snippet-preview {
+    position: relative;
+    flex: 0 0 100%;
+    padding: 15px 0;
+  }
+
+  .bd-snippet-code {
+    position: relative;
+    flex: 0 0 100%;
+
+    pre {
+      background-color: #f8f8f8;
+    }
+
+    .highlight.bd-is-hovering {
+      border-radius: 2px;
+      box-shadow: 0 0 0 2px #ff2885;
+    }
+
+    button.bd-copy {
+      position: absolute;
+      background: none;
+      border: none;
+      color: #ff2885;
+      cursor: pointer;
+      font-size: 0.625rem;
+      outline: none;
+      padding-bottom: 0;
+      padding-top: 0;
+      right: 0.25rem;
+      top: 0.25rem;
+      transition: 0.05;
+    }
+
+    .bd-copy:hover {
+      background-color: #ff2885;
+      color: white;
+    }
+
+    .bd-copy:focus,
+    .bd-copy:active {
+      box-shadow: none;
+      background-color: darken(#ff2885, 20);
+    }
+  }
+}
