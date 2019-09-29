@@ -16,7 +16,7 @@ export const DocPropMarkdown = tag => {
   if (docs) {
     const components = docs.components;
     const component = components.find(component => component.tag === tag);
-    if (component) {
+    if (component && component.props && component.props.length > 0) {
       const tableContent = [["Attribute", "Description", "Type", "Default"]];
       const props = component.props.forEach(prop => {
         tableContent.push([

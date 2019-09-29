@@ -61,21 +61,3 @@ storiesOf("Button", module)
 <bal-button type="is-danger" loading>Danger</bal-button>
 `
   );
-
-// export default {
-//   title: "bal-button",
-//   parameters: {
-//     notes: readme
-//   }
-// };
-
-// const Center = ({ children }) => <div style={styles}>{children}</div>;
-
-// export const primary = () => `
-// <bal-button type="is-primary">Hode</bal-button>
-// ${copyCodeBlock('<bal-button type="is-primary">Hode</bal-button>', {
-//   lang: "xml"
-// })}
-
-// `;
-// export const info = () => '<bal-button type="is-info">Hode</bal-button>';

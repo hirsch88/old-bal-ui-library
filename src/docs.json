@@ -1,5 +1,5 @@
 {
-  "timestamp": "2019-09-27T14:33:02",
+  "timestamp": "2019-09-28T19:58:48",
   "compiler": {
     "name": "@stencil/core",
     "version": "1.5.2",
@@ -10,8 +10,7 @@
       "tag": "bal-button",
       "filePath": "src/components/bal-button/bal-button.tsx",
       "encapsulation": "none",
-      "readme": "# bal-button\n\naksdfölkasd\n",
-      "docs": "aksdfölkasd",
+      "docs": "",
       "docsTags": [],
       "usage": {},
       "props": [
@@ -59,7 +58,19 @@
       "tag": "bal-spinner",
       "filePath": "src/components/bal-spinner/bal-spinner.tsx",
       "encapsulation": "shadow",
-      "readme": "# doc-page-spinner\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": []
+    },
+    {
+      "tag": "bal-toast",
+      "filePath": "src/components/bal-toast/bal-toast.tsx",
+      "encapsulation": "shadow",
       "docs": "",
       "docsTags": [],
       "usage": {},
