@@ -1,4 +1,4 @@
-# bal-ui-library
+# Bal UI Library
 
 ## Todo
 

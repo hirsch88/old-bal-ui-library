@@ -1,4 +1,4 @@
-import { newE2EPage } from '@stencil/core/testing';
+import { newE2EPage } from 'bal-toast/node_modules/@stencil/core/testing';
 
 describe('bal-toast', () => {
   it('renders', async () => {

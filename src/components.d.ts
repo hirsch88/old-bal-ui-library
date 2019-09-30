@@ -25,9 +25,6 @@ export namespace Components {
   }
   interface BalSpinner {}
   interface BalToast {}
-  interface DocSnippet {
-    'snippet': string;
-  }
 }
 
 declare global {
@@ -50,17 +47,10 @@ declare global {
     prototype: HTMLBalToastElement;
     new (): HTMLBalToastElement;
   };
-
-  interface HTMLDocSnippetElement extends Components.DocSnippet, HTMLStencilElement {}
-  var HTMLDocSnippetElement: {
-    prototype: HTMLDocSnippetElement;
-    new (): HTMLDocSnippetElement;
-  };
   interface HTMLElementTagNameMap {
     'bal-button': HTMLBalButtonElement;
     'bal-spinner': HTMLBalSpinnerElement;
     'bal-toast': HTMLBalToastElement;
-    'doc-snippet': HTMLDocSnippetElement;
   }
 }
 
@@ -81,15 +71,11 @@ declare namespace LocalJSX {
   }
   interface BalSpinner {}
   interface BalToast {}
-  interface DocSnippet {
-    'snippet'?: string;
-  }
 
   interface IntrinsicElements {
     'bal-button': BalButton;
     'bal-spinner': BalSpinner;
     'bal-toast': BalToast;
-    'doc-snippet': DocSnippet;
   }
 }
 
@@ -102,7 +88,6 @@ declare module "@stencil/core" {
       'bal-button': LocalJSX.BalButton & JSXBase.HTMLAttributes<HTMLBalButtonElement>;
       'bal-spinner': LocalJSX.BalSpinner & JSXBase.HTMLAttributes<HTMLBalSpinnerElement>;
       'bal-toast': LocalJSX.BalToast & JSXBase.HTMLAttributes<HTMLBalToastElement>;
-      'doc-snippet': LocalJSX.DocSnippet & JSXBase.HTMLAttributes<HTMLDocSnippetElement>;
     }
   }
 }

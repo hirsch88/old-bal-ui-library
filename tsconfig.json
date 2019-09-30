@@ -18,7 +18,7 @@
   },
   "include": [
     "src",
-    "types/jsx.d.ts"
+    "types/jsx.d.ts", "node_modules/bal-toast", "old/bal-button"
   ],
   "exclude": [
     "node_modules"
