@@ -1,8 +1,10 @@
 @charset "utf-8";
 
-@import "utilities/all";
-@import "base/all";
+.bal-app {
+  @import "utilities/all";
+  @import "base/all";
 
-@import "node_modules/bulma/sass/grid/_all.sass";
-@import "node_modules/bulma/sass/layout/_all.sass";
-@import "node_modules/bulma/sass/elements/title.sass";
+  @import "node_modules/bulma/sass/grid/_all.sass";
+  @import "node_modules/bulma/sass/layout/_all.sass";
+  @import "node_modules/bulma/sass/elements/title.sass";
+}
