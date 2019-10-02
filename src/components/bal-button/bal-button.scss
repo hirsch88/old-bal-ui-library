@@ -5,6 +5,7 @@
   transition: 0.2s ease-in-out;
   outline: none !important;
   user-select: none;
+  min-height: 50px;
 
   bal-spinner > div {
     background: red !important;

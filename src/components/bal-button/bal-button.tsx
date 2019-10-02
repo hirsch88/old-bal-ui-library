@@ -2,7 +2,7 @@ import { Component, Host, h, Prop } from "@stencil/core";
 
 @Component({
   tag: "bal-button",
-  styleUrl: "bal-button.scss",
+  styleUrl: "bal-button.scss"
   shadow: true
 })
 export class BalButton {
@@ -31,7 +31,7 @@ export class BalButton {
             ""
           )}
           <span style={{ display: this.loading ? "none" : "inline-block" }}>
-            <slot></slot>
+            <slot />
           </span>
         </button>
       </Host>

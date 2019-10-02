@@ -1351,10 +1351,10 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   cursor: pointer;
   font-family: MetaPro, Arial, sans-serif;
   justify-content: center;
-  padding-bottom: 24px;
+  padding-bottom: calc(0.375em - 1px);
   padding-left: 30px;
   padding-right: 30px;
-  padding-top: 24px;
+  padding-top: calc(0.375em - 1px);
   text-align: center;
   white-space: nowrap;
 }
@@ -2362,6 +2362,7 @@ a.has-text-danger:hover, a.has-text-danger:focus {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  min-height: 50px;
 }
 .button bal-spinner > div {
   background: red !important;

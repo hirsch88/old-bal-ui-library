@@ -1,8 +1,8 @@
 {
   "entries": [
-    "components/bal-toast/bal-toast.js",
     "components/bal-button/bal-button.js",
-    "components/bal-spinner/bal-spinner.js"
+    "components/bal-spinner/bal-spinner.js",
+    "components/bal-toast/bal-toast.js"
   ],
   "compiler": {
     "name": "@stencil/core",
