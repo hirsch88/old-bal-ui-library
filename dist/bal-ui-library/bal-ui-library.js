@@ -1,7 +1,11 @@
 
 'use strict';
 (function () {
-/*!
+  var doc = document;
+  var currentScript = doc.currentScript;
+  if (!currentScript || !currentScript.hasAttribute('nomodule') || !('onbeforeload' in currentScript)) {
+
+    /*!
 es6-promise - a tiny implementation of Promises/A+.
 Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
 Licensed under MIT license
@@ -117,7 +121,7 @@ Creative Commons Zero v1.0 Universal
 /*!
 Element.getRootNode()
 */
-(function(c){function d(a){a=b(a);return 11===a.nodeType?d(a.host):a}function b(a){return a.parentNode?b(a.parentNode):a}"function"!==typeof c.getRootNode&&(c.getRootNode=function(a){return a&&a.composed?d(this):b(this)})})(Element.prototype);
+(function(c){function d(a){a=b(a);return a&&11===a.nodeType?d(a.host):a}function b(a){return a&&a.parentNode?b(a.parentNode):a}"function"!==typeof c.getRootNode&&(c.getRootNode=function(a){return a&&a.composed?d(this):b(this)})})(Element.prototype);
 
 /*!
 Element.isConnected()
@@ -628,9 +632,13 @@ function parseCSS(original) {
     };
 }
 function addGlobalStyle(globalScopes, styleEl) {
+    if (globalScopes.some(function (css) { return css.styleEl === styleEl; })) {
+        return false;
+    }
     var css = parseCSS(styleEl.textContent);
     css.styleEl = styleEl;
     globalScopes.push(css);
+    return true;
 }
 function updateGlobalScopes(scopes) {
     var selectors = getSelectorsForScopes(scopes);
@@ -665,19 +673,27 @@ function loadDocument(doc, globalScopes) {
     loadDocumentStyles(doc, globalScopes);
     return loadDocumentLinks(doc, globalScopes);
 }
+function startWatcher(doc, globalScopes) {
+    var mutation = new MutationObserver(function () {
+        if (loadDocumentStyles(doc, globalScopes)) {
+            updateGlobalScopes(globalScopes);
+        }
+    });
+    mutation.observe(document.head, { childList: true });
+}
 function loadDocumentLinks(doc, globalScopes) {
     var promises = [];
-    var linkElms = doc.querySelectorAll('link[rel="stylesheet"][href]');
+    var linkElms = doc.querySelectorAll('link[rel="stylesheet"][href]:not([data-no-shim])');
     for (var i = 0; i < linkElms.length; i++) {
         promises.push(addGlobalLink(doc, globalScopes, linkElms[i]));
     }
     return Promise.all(promises);
 }
 function loadDocumentStyles(doc, globalScopes) {
-    var styleElms = doc.querySelectorAll('style:not([data-styles])');
-    for (var i = 0; i < styleElms.length; i++) {
-        addGlobalStyle(globalScopes, styleElms[i]);
-    }
+    var styleElms = Array.from(doc.querySelectorAll('style:not([data-styles]):not([data-no-shim])'));
+    return styleElms
+        .map(function (style) { return addGlobalStyle(globalScopes, style); })
+        .some(Boolean);
 }
 function addGlobalLink(doc, globalScopes, linkElm) {
     var url = linkElm.href;
@@ -737,14 +753,22 @@ var CustomStyle = /** @class */ (function () {
         this.hostScopeMap = new WeakMap();
         this.globalScopes = [];
         this.scopesMap = new Map();
+        this.didInit = false;
     }
     CustomStyle.prototype.initShim = function () {
         var _this = this;
-        return new Promise(function (resolve) {
-            _this.win.requestAnimationFrame(function () {
-                loadDocument(_this.doc, _this.globalScopes).then(function () { return resolve(); });
+        if (this.didInit) {
+            return Promise.resolve();
+        }
+        else {
+            this.didInit = true;
+            return new Promise(function (resolve) {
+                _this.win.requestAnimationFrame(function () {
+                    startWatcher(_this.doc, _this.globalScopes);
+                    loadDocument(_this.doc, _this.globalScopes).then(function () { return resolve(); });
+                });
             });
-        });
+        }
     };
     CustomStyle.prototype.addLink = function (linkEl) {
         var _this = this;
@@ -753,8 +777,9 @@ var CustomStyle = /** @class */ (function () {
         });
     };
     CustomStyle.prototype.addGlobalStyle = function (styleEl) {
-        addGlobalStyle(this.globalScopes, styleEl);
-        this.updateGlobal();
+        if (addGlobalStyle(this.globalScopes, styleEl)) {
+            this.updateGlobal();
+        }
     };
     CustomStyle.prototype.createHostStyle = function (hostEl, cssScopeId, cssText, isScoped) {
         if (this.hostScopeMap.has(hostEl)) {
@@ -762,6 +787,7 @@ var CustomStyle = /** @class */ (function () {
         }
         var baseScope = this.registerHostTemplate(cssText, cssScopeId, isScoped);
         var styleEl = this.doc.createElement('style');
+        styleEl.setAttribute('data-styles', '');
         if (!baseScope.usesCssVars) {
             // This component does not use (read) css variables
             styleEl.textContent = cssText;
@@ -828,30 +854,30 @@ if (!win.__stencil_cssshim && needsShim()) {
     win.__stencil_cssshim = new CustomStyle(win, document);
 }
 
-var doc = document;
-var scriptElm = doc.querySelector('script[data-stencil-namespace="bal-ui-library"]');
-if (!scriptElm) {
-  var allScripts = doc.querySelectorAll('script');
-  for (var x = allScripts.length - 1; x >= 0; x--) {
-    scriptElm = allScripts[x];
-    if (scriptElm.src || scriptElm.hasAttribute('data-resources-url')) {
-      break;
+    var scriptElm = doc.querySelector('script[data-stencil-namespace="bal-ui-library"]');
+    if (!scriptElm) {
+      var allScripts = doc.querySelectorAll('script');
+      for (var x = allScripts.length - 1; x >= 0; x--) {
+        scriptElm = allScripts[x];
+        if (scriptElm.src || scriptElm.hasAttribute('data-resources-url')) {
+          break;
+        }
+      }
     }
+
+    var resourcesUrl = scriptElm ? scriptElm.getAttribute('data-resources-url') || scriptElm.src : '';
+    var start = function() {
+      var url = new URL('./p-0a614521.system.js', resourcesUrl);
+      System.import(url.href);
+    };
+
+    if (win.__stencil_cssshim) {
+      win.__stencil_cssshim.initShim().then(start);
+    } else {
+      start();
+    }
+
+    // Note: using .call(window) here because the self-executing function needs
+    // to be scoped to the window object for the ES6Promise polyfill to work
   }
-}
-
-var resourcesUrl = scriptElm ? scriptElm.getAttribute('data-resources-url') || scriptElm.src : '';
-var start = function() {
-  var url = new URL('./p-22ef5385.system.js', resourcesUrl);
-  System.import(url.href);
-};
-
-if (win.__stencil_cssshim) {
-  win.__stencil_cssshim.initShim().then(start);
-} else {
-  start();
-}
-
-// Note: using .call(window) here because the self-executing function needs
-// to be scoped to the window object for the ES6Promise polyfill to work
 }).call(window);

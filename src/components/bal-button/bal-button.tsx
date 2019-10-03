@@ -2,7 +2,7 @@ import { Component, Host, h, Prop } from "@stencil/core";
 
 @Component({
   tag: "bal-button",
-  styleUrl: "bal-button.scss"
+  styleUrl: "bal-button.scss",
   shadow: true
 })
 export class BalButton {

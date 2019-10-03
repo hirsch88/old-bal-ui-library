@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './core-59a5741b.js';
+import { r as registerInstance, h, H as Host } from './core-3525f4f3.js';
 var BalToast = /** @class */ (function () {
     function BalToast(hostRef) {
         registerInstance(this, hostRef);

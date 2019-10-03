@@ -313,14 +313,16 @@ function resolveValues(selectors) {
         }
     };
     for (var i = 0; i < 10; i++) {
-        var state_1 = _loop_1(i);
+        var state_1 = _loop_1();
         if (state_1 === "break")
             break;
     }
     return propsValues;
 }
 function getSelectors(root, index) {
-    if (index === void 0) { index = 0; }
+    if (index === void 0) {
+        index = 0;
+    }
     if (!root.rules) {
         return [];
     }

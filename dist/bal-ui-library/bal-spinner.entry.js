@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './core-62bdc571.js';
+import { r as registerInstance, h, H as Host } from './core-4c84bbf3.js';
 
 const BalSpinner = class {
     constructor(hostRef) {

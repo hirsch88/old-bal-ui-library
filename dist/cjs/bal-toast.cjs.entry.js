@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const core = require('./core-3c413d70.js');
+const core = require('./core-846e4ae0.js');
 
 const BalToast = class {
     constructor(hostRef) {
@@ -11,7 +11,7 @@ const BalToast = class {
     render() {
         return (core.h(core.Host, null, core.h("slot", null), "asdf"));
     }
-    static get style() { return ":host{display:block;height:80px;width:200px;background-color:#00f;position:absolute;top:20px}"; }
+    static get style() { return ":host {\n  display: block;\n  height: 80px;\n  width: 200px;\n  background-color: blue;\n  position: absolute;\n  top: 20px;\n}"; }
 };
 
 exports.bal_toast = BalToast;

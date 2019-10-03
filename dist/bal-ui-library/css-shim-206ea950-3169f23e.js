@@ -313,7 +313,7 @@ function resolveValues(selectors) {
         }
     };
     for (var i = 0; i < 10; i++) {
-        var state_1 = _loop_1(i);
+        var state_1 = _loop_1();
         if (state_1 === "break")
             break;
     }
