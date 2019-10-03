@@ -1,0 +1,15 @@
+language: node_js
+install:
+  - npm ci
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+    - "$HOME/.npm"
+jobs:
+  include:
+    - stage: Test
+      script:
+        - npm test
