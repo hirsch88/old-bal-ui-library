@@ -1,6 +1,1 @@
-# Bal UI Library
-
-## Todo
-
-[] Add font to the library
-[] Create toast to test js interaction with storybook
+# Bal UI Library [![Build Status](https://travis-ci.org/hirsch88/bal-ui-library.svg?branch=master)](https://travis-ci.org/hirsch88/bal-ui-library)
